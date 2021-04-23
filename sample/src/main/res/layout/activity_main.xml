@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/tvSelect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="当前选中" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnYmdhm"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="YMDHM" />
+
+        <Button
+            android:id="@+id/btnYmd"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="YMD" />
+
+        <Button
+            android:id="@+id/btnHm"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="HM" />
+    </LinearLayout>
+
+    <me.wcy.datepicker.DatePickerView
+        android:id="@+id/datePickerView"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:dpvHighlightColor="@color/colorPrimary" />
+
+    <Button
+        android:id="@+id/btnDatePicker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="当前选中日期" />
+
+    <me.wcy.datepicker.PickerView
+        android:id="@+id/mPickerView"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        app:pvHighlightColor="@color/colorAccent" />
+
+    <Button
+        android:id="@+id/btnItemPicker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="当前选中项" />
+</LinearLayout>

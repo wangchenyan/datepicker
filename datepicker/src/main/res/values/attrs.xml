@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="PickerView">
+        <attr name="pvHighlightColor" format="color" />
+    </declare-styleable>
+    <declare-styleable name="DatePickerView">
+        <attr name="dpvHighlightColor" format="color" />
+    </declare-styleable>
+</resources>

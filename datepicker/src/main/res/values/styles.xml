@@ -1,0 +1,13 @@
+<resources>
+
+    <style name="DatePicker.Dialog" parent="@style/Theme.AppCompat.Light.Dialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowAnimationStyle">@style/DatePicker_DialogAnimation</item>
+    </style>
+
+    <style name="DatePicker_DialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/abc_slide_in_bottom</item>
+        <item name="android:windowExitAnimation">@anim/abc_slide_out_bottom</item>
+    </style>
+</resources>
