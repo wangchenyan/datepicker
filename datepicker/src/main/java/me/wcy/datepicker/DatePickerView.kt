@@ -34,17 +34,14 @@ class DatePickerView @JvmOverloads constructor(
         orientation = HORIZONTAL
         val ta = context.obtainStyledAttributes(attrs, R.styleable.DatePickerView)
         mHighlightColor = ta.getColor(R.styleable.DatePickerView_dpvHighlightColor, Color.BLACK)
+        val dateTypeId = ta.getInt(R.styleable.DatePickerView_dpvDateType, DateType.YMDHM.id)
+        mDateType = DateType.fromId(dateTypeId)
         ta.recycle()
         init()
     }
 
     private fun init() {
         val calendar = Calendar.getInstance()
-        binding.pvYear.setText(context.getString(R.string.strDateYear))
-        binding.pvMonth.setText(context.getString(R.string.strDateMonth))
-        binding.pvDay.setText(context.getString(R.string.strDateDay))
-        binding.pvHour.setText(context.getString(R.string.strDateHour))
-        binding.pvMinute.setText(context.getString(R.string.strDateMinute))
 
         // Year
         setYearRange(mYearRange)
@@ -52,7 +49,7 @@ class DatePickerView @JvmOverloads constructor(
         // Month+
         mCurrentMonth = calendar[Calendar.MONTH] + 1
         binding.pvMonth.setItems(getDateItems(12, 1))
-        binding.pvMonth.setSelectValue(getDateForShow(mCurrentMonth, 2))
+        binding.pvMonth.setSelectedItem(getDateForShow(mCurrentMonth, 2))
 
         // Day
         mCurrentDay = calendar[Calendar.DAY_OF_MONTH]
@@ -61,12 +58,12 @@ class DatePickerView @JvmOverloads constructor(
         // Hour
         mCurrentHour = calendar[Calendar.HOUR_OF_DAY]
         binding.pvHour.setItems(getDateItems(24, 0))
-        binding.pvHour.setSelectValue(getDateForShow(mCurrentHour, 2))
+        binding.pvHour.setSelectedItem(getDateForShow(mCurrentHour, 2))
 
         // Minute
         mCurrentMinute = calendar[Calendar.MINUTE]
         binding.pvMinute.setItems(getDateItems(60, 0))
-        binding.pvMinute.setSelectValue(getDateForShow(mCurrentMinute, 2))
+        binding.pvMinute.setSelectedItem(getDateForShow(mCurrentMinute, 2))
 
         setDateType(mDateType)
         setHighlightColor(mHighlightColor)
@@ -131,7 +128,7 @@ class DatePickerView @JvmOverloads constructor(
         if (mCurrentYear !in startYear..endYear) {
             mCurrentYear = endYear
         }
-        binding.pvYear.setSelectValue(getDateForShow(mCurrentYear, 4))
+        binding.pvYear.setSelectedItem(getDateForShow(mCurrentYear, 4))
         return this
     }
 
@@ -146,7 +143,7 @@ class DatePickerView @JvmOverloads constructor(
         return this
     }
 
-    fun getSelectDate(): Long {
+    fun getSelectedDate(): Long {
         return when (mDateType) {
             DateType.HM -> getDateMills(hour = mCurrentHour, minute = mCurrentMinute)
             DateType.YMD -> getDateMills(year = mCurrentYear, month = mCurrentMonth, day = mCurrentDay)
@@ -160,7 +157,7 @@ class DatePickerView @JvmOverloads constructor(
         binding.pvDay.setItems(dayItems)
         // fix day
         mCurrentDay = min(mCurrentDay, daySize)
-        binding.pvDay.setSelectValue(getDateForShow(mCurrentDay, 2))
+        binding.pvDay.setSelectedItem(getDateForShow(mCurrentDay, 2))
     }
 
     private fun getDaySize(year: Int, month: Int): Int {

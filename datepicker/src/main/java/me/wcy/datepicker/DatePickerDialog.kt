@@ -43,7 +43,7 @@ class DatePickerDialog private constructor(context: Context) : Dialog(context, R
     private fun init() {
         binding.datePickerView.setDateType(mDateType)
         binding.datePickerView.setYearRange(mYearRange)
-        binding.tvDialogTitle.text = mTitle ?: context.getString(R.string.strDateSelect)
+        binding.tvDialogTitle.text = mTitle ?: "选择日期"
         val highlightColor = mHighlightColor ?: Color.BLACK
         binding.datePickerView.setHighlightColor(highlightColor)
         binding.tvDialogTopConfirm.setTextColor(highlightColor)
@@ -54,9 +54,7 @@ class DatePickerDialog private constructor(context: Context) : Dialog(context, R
         }
         binding.tvDialogTopConfirm.setOnClickListener {
             dismiss()
-            if (mOnDateResult != null) {
-                mOnDateResult?.invoke(binding.datePickerView.getSelectDate())
-            }
+            mOnDateResult?.invoke(binding.datePickerView.getSelectedDate())
         }
     }
 
@@ -96,7 +94,7 @@ class DatePickerDialog private constructor(context: Context) : Dialog(context, R
             return this
         }
 
-        fun setOnDateResultListener(onDateResult: ((date: Long) -> Unit)): Builder {
+        fun setOnDateResult(onDateResult: ((date: Long) -> Unit)): Builder {
             this.onDateResult = onDateResult
             return this
         }

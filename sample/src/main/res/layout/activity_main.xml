@@ -48,6 +48,7 @@
         android:id="@+id/datePickerView"
         android:layout_width="match_parent"
         android:layout_height="200dp"
+        app:dpvDateType="YMDHM"
         app:dpvHighlightColor="@color/colorPrimary" />
 
     <Button
@@ -57,10 +58,11 @@
         android:text="当前选中日期" />
 
     <me.wcy.datepicker.PickerView
-        android:id="@+id/mPickerView"
+        android:id="@+id/pickerView"
         android:layout_width="wrap_content"
         android:layout_height="200dp"
-        app:pvHighlightColor="@color/colorAccent" />
+        app:pvHighlightColor="@color/colorAccent"
+        app:pvText="同学" />
 
     <Button
         android:id="@+id/btnItemPicker"

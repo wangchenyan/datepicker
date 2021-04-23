@@ -4,7 +4,7 @@
 
 > 站在巨人的肩膀上 [MDatePickerSample](https://github.com/jzmanu/MDatePickerSample)
 
-时间选择器，滚动列表选择器
+Android 日期选择器，时间选择器，滚动列表选择器
 
 ![](https://raw.githubusercontent.com/wangchenyan/datepicker/master/art/screenshot1.png)
 ![](https://raw.githubusercontent.com/wangchenyan/datepicker/master/art/screenshot2.png)
@@ -39,6 +39,7 @@ dependencies {
 ## Usage
 
 1. DatePickerDialog
+日期选择弹窗，支持`年月日时分`、`年月日`、`时分`
 
 ```kotlin
 DatePickerDialog.Builder(this)
@@ -46,7 +47,7 @@ DatePickerDialog.Builder(this)
         .setTitle("自定义标题")
         .setHighlightColor(ContextCompat.getColor(this, R.color.colorPrimary))
         .setCanceledTouchOutside(true)
-        .setOnDateResultListener { date ->
+        .setOnDateResult { date ->
             val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
             binding.tvSelect.text = "当前选中: ${dateFormat.format(Date(date))}"
         }
@@ -55,13 +56,15 @@ DatePickerDialog.Builder(this)
 ```
 
 2. DatePickerView
+日期选择控件，支持`年月日时分`、`年月日`、`时分`
 
 ```xml
 <me.wcy.datepicker.DatePickerView
     android:id="@+id/datePickerView"
     android:layout_width="match_parent"
     android:layout_height="200dp"
-    app:dpvHighlightColor="#FF0000" />
+    app:dpvDateType="YMDHM"
+    app:dpvHighlightColor="@color/colorPrimary" />
 ```
 
 ```kotlin
@@ -69,26 +72,28 @@ datePickerView.setDateType(dateType)
 datePickerView.setYearRange(yearRange)
 datePickerView.setHighlightColor(highlightColor)
 
-val date = datePickerView.getSelectDate()
+val date = datePickerView.getSelectedDate()
 ```
 
 3. PickerView
+滚动列表选择控件
 
 ```xml
 <me.wcy.datepicker.PickerView
     android:id="@+id/pickerView"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="200dp"
-    app:pvHighlightColor="#FF0000" />
+    app:pvHighlightColor="@color/colorAccent"
+    app:pvText="同学" />
 ```
 
 ```kotlin
 pickerView.setItems(items)
-pickerView.setSelectPosition(position)
+pickerView.setSelectedPosition(position)
 pickerView.setText(text)
 pickerView.setHighlightColor(color)
 
-val selectPosition = pickerView.getSelectPosition()
+val position = pickerView.getSelectedPosition()
 ```
 
 **更多用法请参考 [sample](https://github.com/wangchenyan/crouter/tree/datepicker/sample) 代码**

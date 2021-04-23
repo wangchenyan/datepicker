@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
                     .setTitle("自定义标题")
                     .setHighlightColor(ContextCompat.getColor(this, R.color.colorPrimary))
                     .setCanceledTouchOutside(true)
-                    .setOnDateResultListener { date ->
+                    .setOnDateResult { date ->
                         val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
                         binding.tvSelect.text = "当前选中: ${dateFormat.format(Date(date))}"
                     }
@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
                     .setTitle("选择日期")
                     .setHighlightColor(ContextCompat.getColor(this, R.color.colorPrimaryDark))
                     .setCanceledTouchOutside(false)
-                    .setOnDateResultListener { date ->
+                    .setOnDateResult { date ->
                         val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
                         binding.tvSelect.text = "当前选中: ${dateFormat.format(Date(date))}"
                     }
@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity() {
                     .setTitle("选择时间")
                     .setHighlightColor(ContextCompat.getColor(this, R.color.colorAccent))
                     .setCanceledTouchOutside(true)
-                    .setOnDateResultListener { date ->
+                    .setOnDateResult { date ->
                         val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
                         binding.tvSelect.text = "当前选中: ${dateFormat.format(Date(date))}"
                     }
@@ -64,16 +64,15 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.btnDatePicker.setOnClickListener {
-            val date = binding.datePickerView.getSelectDate()
+            val date = binding.datePickerView.getSelectedDate()
             val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
             binding.tvSelect.text = "当前选中: ${dateFormat.format(Date(date))}"
         }
 
         val list = listOf("张三", "李四", "王五", "六麻子", "小明")
-        binding.mPickerView.setItems(list)
-        binding.mPickerView.setText("同学")
+        binding.pickerView.setItems(list)
         binding.btnItemPicker.setOnClickListener {
-            val select = binding.mPickerView.getSelectPosition()
+            val select = binding.pickerView.getSelectedPosition()
             Toast.makeText(this, "当前选中: ${list[select]}", Toast.LENGTH_LONG).show()
         }
     }

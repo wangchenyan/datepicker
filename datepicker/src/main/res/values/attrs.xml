@@ -2,8 +2,14 @@
 <resources>
     <declare-styleable name="PickerView">
         <attr name="pvHighlightColor" format="color" />
+        <attr name="pvText" format="string" />
     </declare-styleable>
     <declare-styleable name="DatePickerView">
         <attr name="dpvHighlightColor" format="color" />
+        <attr name="dpvDateType" format="enum">
+            <enum name="YMDHM" value="1" />
+            <enum name="YMD" value="2" />
+            <enum name="HM" value="3" />
+        </attr>
     </declare-styleable>
 </resources>

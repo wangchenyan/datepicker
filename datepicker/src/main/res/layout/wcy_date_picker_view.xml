@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="200dp"
@@ -10,29 +11,34 @@
         android:id="@+id/pvYear"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        app:pvText="年" />
 
     <me.wcy.datepicker.PickerView
         android:id="@+id/pvMonth"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        app:pvText="月" />
 
     <me.wcy.datepicker.PickerView
         android:id="@+id/pvDay"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        app:pvText="日" />
 
     <me.wcy.datepicker.PickerView
         android:id="@+id/pvHour"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        app:pvText="时" />
 
     <me.wcy.datepicker.PickerView
         android:id="@+id/pvMinute"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        app:pvText="分" />
 </merge>

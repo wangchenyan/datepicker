@@ -62,6 +62,7 @@ class PickerView @JvmOverloads constructor(context: Context, attrs: AttributeSet
     init {
         val ta = context.obtainStyledAttributes(attrs, R.styleable.PickerView)
         mHighlightColor = ta.getColor(R.styleable.PickerView_pvHighlightColor, mHighlightColor)
+        mText = ta.getString(R.styleable.PickerView_pvText)
         ta.recycle()
 
         mPaintSelect.textAlign = Paint.Align.CENTER
@@ -69,16 +70,11 @@ class PickerView @JvmOverloads constructor(context: Context, attrs: AttributeSet
         mPaintSelect.color = mHighlightColor
         mPaintNormal.textAlign = Paint.Align.CENTER
         mPaintNormal.textSize = mTextSizeNormal
-        mPaintNormal.color = 0xff999999.toInt()
+        mPaintNormal.color = 0xFF999999.toInt()
         mPaintText.textSize = 15.dp2px().toFloat()
         mPaintText.color = mHighlightColor
         mPaintLine.strokeWidth = 0.5.dp2px().toFloat()
-        mPaintLine.color = 0xffdddddd.toInt()
-    }
-
-    fun setOnSelect(onSelect: ((v: View, item: String) -> Unit)): PickerView {
-        mOnSelect = onSelect
-        return this
+        mPaintLine.color = 0xFFDDDDDD.toInt()
     }
 
     fun setItems(items: List<String>): PickerView {
@@ -105,26 +101,31 @@ class PickerView @JvmOverloads constructor(context: Context, attrs: AttributeSet
         return this
     }
 
-    fun getSelectPosition(): Int {
-        return mRawItems.indexOf(getSelectValue())
+    fun setOnSelect(onSelect: ((v: View, item: String) -> Unit)): PickerView {
+        mOnSelect = onSelect
+        return this
     }
 
-    fun setSelectPosition(position: Int): PickerView {
+    fun getSelectedPosition(): Int {
+        return mRawItems.indexOf(getSelectedItem())
+    }
+
+    fun setSelectedPosition(position: Int): PickerView {
         if (mRawItems.isNotEmpty()) {
-            setSelectValue(mRawItems[position])
+            setSelectedItem(mRawItems[position])
         }
         return this
     }
 
-    fun getSelectValue(): String {
+    fun getSelectedItem(): String {
         return if (mItems.size > 0) mItems[mSelectPosition] else ""
     }
 
-    fun setSelectValue(value: String): PickerView {
+    fun setSelectedItem(item: String): PickerView {
         if (mItems.size > 0) {
             for (i in mItems.indices) {
-                if (value == mItems[i]) {
-                    setSelectPositionInternal(i)
+                if (item == mItems[i]) {
+                    setSelectedPositionInternal(i)
                     break
                 }
             }
@@ -256,7 +257,7 @@ class PickerView @JvmOverloads constructor(context: Context, attrs: AttributeSet
         }
     }
 
-    private fun setSelectPositionInternal(position: Int) {
+    private fun setSelectedPositionInternal(position: Int) {
         mSelectPosition = position
         val value = mItems.size / 2 - mSelectPosition
         if (value < 0) {
